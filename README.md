@@ -1,12 +1,12 @@
-## RIoT_OS_Guide-ESP8266
+# RIoT_OS_Guide-ESP8266
 This is a guide to the set-up necessary for using RIoT OS with the ESP8266
 
-# Preview
+## Preview
 
-# Dependencies
+## Dependencies
 
-# RIoT OS Docker Image
+## RIoT OS Docker Image
 
-# Project configuration
+## Project configuration
 
-# Connecting to the board
+## Connecting to the board
