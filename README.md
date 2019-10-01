@@ -27,7 +27,7 @@ $ docker run -i -t --privileged -v /dev:/dev -u $UID -v $(pwd):/data/riotbuild r
 ```
 However, if you try to use it, an error will prompt for lack of privileges of the user, so the best way I found is to execute as root, and also change the $UID to 0 (root user). This way you will log as root in the image and have all the permissions.
 ```
-$ sudo docker run -i -t --privileged -v /dev:/dev -u $UID -v $(pwd):/data/riotbuild riotbuild
+$ sudo docker run -i -t --privileged -v /dev:/dev -u 0 -v $(pwd):/data/riotbuild riotbuild
 ```
 The main folder of the Docker image is the main folder of the git repository, .../riotdocker-Xtensa-ESP, so anyting we create here will appear in the RIOT image and the other way around.
 
