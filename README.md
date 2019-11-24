@@ -38,8 +38,30 @@ What I did was create a "Projects" folder where I copy the examples and tests of
 ```
 This way we copy the tutorial to a new location and we can modify it as needed.
 
-## Project configuration
+Now we have to modify a couple of things to get to do all the compile flash monitor process from inside the Docker image in one step. First, there is a typo in this file so we have to modify it from OUTSIDE the Docker image:
+```
+$ sudo vi ./RIOT/cpu/esp8266/Makefile.include
+```
+Then search for FLASH_SIZE and replace the value with:
+```
+FLASH_SIZE ?= -fs 1MB
+```
+This way we are capable of flashing the ESP8266 with this script. Otherwise it will prompt something like 4m not recognized flash size... duh. Also by using ?= we make it optional, so we can override this from the project Makefile.
 
+Tips for vi:
+[ESC] + /FLASH_SIZE --> to find it
+[ESC] + dd --> to remove the line
+[ESC] + i + paste the new line
+
+Finally, there are a couple of tools we have to install in our Docker image, so type the following lines INSIDE the Docker image:
+```
+# apt update
+# apt install python3-pip
+# pip3 install pyserial
+```
+
+## Project configuration
+Now, there are some things that we need to 
 
 ## Connecting to the board
 
