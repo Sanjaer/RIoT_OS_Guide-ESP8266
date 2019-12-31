@@ -94,7 +94,7 @@ make all flash term
 
 http://doc.riot-os.org/group__cpu__esp8266.html
 https://github.com/RIOT-OS/RIOT/wiki/Use-Docker-to-build-RIOT
-https://hub.docker.com/r/schorcht/riotbuild_esp8266?????????????????????
+https://hub.docker.com/r/schorcht/riotbuild_esp8266
 https://github.com/espressif/esptool
 https://nodemcu.readthedocs.io/en/master/flash/
 https://www.espressif.com/sites/default/files/documentation/2a-esp8266-sdk_getting_started_guide_en.pdf
