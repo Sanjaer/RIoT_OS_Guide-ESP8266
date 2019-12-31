@@ -61,8 +61,83 @@ Finally, there are a couple of tools we have to install in our Docker image, so 
 ```
 
 ## Project configuration
-Now, there are some things that we need to 
+Now, there are some things that we need to modify in our project in order to make it compile, flash and run in one line.
+
+### Optional
+The way I find best to work is:
+(1) Create a "Projects" folder
+(2) Copy the example (or template) from the examples folder to Projects
+(3) Change owner of all files to your user
+```
+$ mkdir Projects
+# cp -r ./RIOT/examples/[example_or_template]
+# chown -R [your_user]:[your_group] Projects/
+```
+### Configure Makefile
+In the Makefile of the project you are working with, we have to enable the ESP8266 with the characteristics needed.
+
+```
+BOARD = esp8266-olimex-mod
+FLASH_SIZE = -fs 4m # this is the size of the flash memory in MB. See the "Tips and tricks" section for more info
+[...]
+USEMODULE += esp_wifi # Only if needed, probably needed 'though
+[...]
+```
 
 ## Connecting to the board
+Once the project is configured, all we have to do is go to the project's directory in the Docker image and execute the following command:
+```
+make all flash term
+```
 
 ## Resources
+
+http://doc.riot-os.org/group__cpu__esp8266.html
+https://github.com/RIOT-OS/RIOT/wiki/Use-Docker-to-build-RIOT
+https://hub.docker.com/r/schorcht/riotbuild_esp8266?????????????????????
+https://github.com/espressif/esptool
+https://nodemcu.readthedocs.io/en/master/flash/
+https://www.espressif.com/sites/default/files/documentation/2a-esp8266-sdk_getting_started_guide_en.pdf
+https://github.com/espressif/esptoolhttps://github.com/RIOT-OS/RIOT/tree/master/examples/default
+https://github.com/RIOT-OS/RIOT/tree/master/examples/default
+https://github.com/RIOT-OS/RIOT/wiki/Tutorial:-How-to-port-a-radio-module-driver-to-RIOT-OS
+https://github.com/RIOT-OS/RIOT/issues/11844
+https://github.com/gschorcht?tab=repositories
+
+## Tips and Tricks
+### Get ESP8266 flash memory size
+With the ESP8266 connected via USB
+```
+$ esptool.py flash_id
+```
+Prompt should be something like this:
+```
+esptool.py v2.7
+Found 1 serial ports
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+Crystal is 26MHz
+MAC: 84:f3:eb:8e:5d:53
+Uploading stub...
+Running stub...
+Stub running...
+Manufacturer: c8
+Device: 4016
+Detected flash size: 4MB
+Hard resetting via RTS pin...
+```
+
+### Print IP Address
+Add this lines in your project
+```
+[...]
+extern int _gnrc_netif_config(int argc, char **argv);
+[...]
+/* print network addresses */
+puts("Configured network interfaces:");
+_gnrc_netif_config(0, NULL);
+[...]
+```
