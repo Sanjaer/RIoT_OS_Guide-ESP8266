@@ -13,7 +13,8 @@ $ pip install esptool
 ```
 
 ## RIoT OS Docker Image
-To install this, simply follow this commands
+The Docker image is in https://github.com/gschorcht/riotdocker-Xtensa-ESP.git
+To configure it, simply follow this commands
 ```
 $ git clone https://github.com/gschorcht/riotdocker-Xtensa-ESP.git
 $ cd riotdocker-Xtensa-ESP
