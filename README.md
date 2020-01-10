@@ -45,7 +45,7 @@ $ sudo vi ./RIOT/cpu/esp8266/Makefile.include
 ```
 Then search for FLASH_SIZE and replace the value with:
 ```
-FLASH_SIZE ?= -fs 1MB
+FLASH_SIZE ?= -fs 1m
 ```
 This way we are capable of flashing the ESP8266 with this script. Otherwise it will prompt something like 4m not recognized flash size... duh. Also by using ?= we make it optional, so we can override this from the project Makefile.
 
