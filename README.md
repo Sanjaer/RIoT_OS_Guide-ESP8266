@@ -75,10 +75,14 @@ $ mkdir Projects
 # chown -R [your_user]:[your_group] Projects/
 ```
 ### Configure Makefile
-In the Makefile of the project you are working with, we have to enable the ESP8266 with the characteristics needed.
+In the Makefile of the project you are working with, we have to enable the ESP8266 with the characteristics needed. There are several models and memory sizes:
+Models:
+- esp8266-esp-12x
+- esp8266-olimex-mod
+- esp8266-sparkfun-thing
 
 ```
-BOARD = esp8266-olimex-mod
+BOARD = esp8266-olimex-mod # Your model here
 FLASH_SIZE = -fs 4m # this is the size of the flash memory in MB. See the "Tips and tricks" section for more info
 [...]
 USEMODULE += esp_wifi # Only if needed, probably needed 'though
